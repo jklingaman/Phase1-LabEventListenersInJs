@@ -78,5 +78,29 @@ createAlert()
 
 document.querySelector('#log').addEventListener('click', () => console.log('I bet you weren\'t expecting me to say hello again were you. :)' ))
 
-
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  let form = document.getElementById('form2');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    buildToDo(e.target.toDo.value);
+    form.reset()
+  })
+})
+
+function buildToDo(toDo) {
+  let p = document.createElement('p');
+  let btn = document.createElement('button');
+  btn.addEventListener('click', handleDelete)
+  btn.textContent = 'x';
+  p.textContent = `${toDo} `;
+  // p.appendChild(btn);
+  console.log(p)
+  document.querySelector('#toDoContainer').appendChild(p).appendChild(btn);
+}
+
+function handleDelete(e) {
+  e.target.parentNode.remove()
+}
